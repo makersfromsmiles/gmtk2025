@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjxsbveiy22cn"
-path="res://.godot/imported/rancher.png-526c9256cff4dc170ddac91c8270bf86.ctex"
+path="res://.godot/imported/rancher.png-97676e9ec92082cf3242b1db4bd850ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/rancher.png"
-dest_files=["res://.godot/imported/rancher.png-526c9256cff4dc170ddac91c8270bf86.ctex"]
+source_file="res://sprites/rancher/rancher.png"
+dest_files=["res://.godot/imported/rancher.png-97676e9ec92082cf3242b1db4bd850ef.ctex"]
 
 [params]
 

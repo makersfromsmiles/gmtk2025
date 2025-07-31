@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7v17gq76qtol"
-path="res://.godot/imported/cosmo_cave.png-33921220f0e104b37c9fd66b9d6b976b.ctex"
+uid="uid://drgngv01g7ms5"
+path="res://.godot/imported/slime_bouncer_2.png-731c851f21f5ad32de63fd4289af5a54.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/cosmo_cave.png"
-dest_files=["res://.godot/imported/cosmo_cave.png-33921220f0e104b37c9fd66b9d6b976b.ctex"]
+source_file="res://sprites/critter/slime_bouncer_2.png"
+dest_files=["res://.godot/imported/slime_bouncer_2.png-731c851f21f5ad32de63fd4289af5a54.ctex"]
 
 [params]
 
