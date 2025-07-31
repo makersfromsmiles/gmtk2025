@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://do1jrs4xys21h"
-path="res://.godot/imported/lasso.png-64de173f0a04492abe6a9aa05d37f8f8.ctex"
+uid="uid://dx8xag7pjgkhg"
+path="res://.godot/imported/rancher_slide.png-a5e096cade9a199941f2df5dff184b73.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/lasso.png"
-dest_files=["res://.godot/imported/lasso.png-64de173f0a04492abe6a9aa05d37f8f8.ctex"]
+source_file="res://sprites/rancher/rancher_slide.png"
+dest_files=["res://.godot/imported/rancher_slide.png-a5e096cade9a199941f2df5dff184b73.ctex"]
 
 [params]
 

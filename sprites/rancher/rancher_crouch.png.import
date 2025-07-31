@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qklolnnjf5ge"
-path="res://.godot/imported/bgtile.png-444839aca1482cd437c534f480dc88a3.ctex"
+uid="uid://cmtgngtondvsx"
+path="res://.godot/imported/rancher_crouch.png-fad1b4d2bcdbe2f6aeb9749564890bea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/bgtile.png"
-dest_files=["res://.godot/imported/bgtile.png-444839aca1482cd437c534f480dc88a3.ctex"]
+source_file="res://sprites/rancher/rancher_crouch.png"
+dest_files=["res://.godot/imported/rancher_crouch.png-fad1b4d2bcdbe2f6aeb9749564890bea.ctex"]
 
 [params]
 

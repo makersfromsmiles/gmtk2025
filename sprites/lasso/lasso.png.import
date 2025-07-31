@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://drgngv01g7ms5"
-path="res://.godot/imported/slime_bouncer_2.png-66a9f6121407b593e0831e2cd84450b4.ctex"
+uid="uid://do1jrs4xys21h"
+path="res://.godot/imported/lasso.png-59565b69c8e12422b766cab88e1b4313.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/slime_bouncer_2.png"
-dest_files=["res://.godot/imported/slime_bouncer_2.png-66a9f6121407b593e0831e2cd84450b4.ctex"]
+source_file="res://sprites/lasso/lasso.png"
+dest_files=["res://.godot/imported/lasso.png-59565b69c8e12422b766cab88e1b4313.ctex"]
 
 [params]
 
