@@ -29,7 +29,6 @@ project/assembly_name="gmtk-2025"
 [editor]
 
 movie_writer/movie_file="F:/Users/owen2/Documents/GitHub/gmtk2025/gmtk2025video.avi"
-movie_writer/fps=30
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 

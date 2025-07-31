@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=4 uid="uid://bo7rdr8ov4kht"]
+[gd_scene load_steps=17 format=4 uid="uid://bo7rdr8ov4kht"]
 
+[ext_resource type="Texture2D" uid="uid://dd46af5dcplye" path="res://sprites/world/cosmo_cave_bg.png" id="1_w7kh3"]
 [ext_resource type="Texture2D" uid="uid://c7fmmvs78bpyw" path="res://sprites/world/cosmo_cave.png" id="2_4mrxx"]
 [ext_resource type="Texture2D" uid="uid://drgngv01g7ms5" path="res://sprites/critter/slime_bouncer_2.png" id="2_4wyf3"]
 [ext_resource type="Script" uid="uid://dtkr15pwhbiau" path="res://scenes/slime.gd" id="3_4mrxx"]
@@ -88,6 +89,13 @@ size = Vector2(16, 48)
 
 [node name="World" type="Node2D"]
 
+[node name="CaveParallax" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0)
+
+[node name="CaveBGSprite" type="Sprite2D" parent="CaveParallax"]
+position = Vector2(240, 135)
+texture = ExtResource("1_w7kh3")
+
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAABAAAgAAAAQAAAABABAAAgABAAQAAAACABAAAgACAAQAAAADABAAAgABAAQAAAAEABAAAgACAAQAAAAFABAAAgABAAQAAAAGABAAAgACAAQAAAAHABAAAgABAAQAAAAIABAAAgACAAQAAAAJABAAAgABAAQAAAAKABAAAgACAAQAAAALABAAAgABAAQAAAAMABAAAgACAAQAAAANABAAAgABAAQAAAAOABAAAgACAAQAAAAPABAAAgABAAQAAAAQABAAAgACAAQAAAARABAAAgABAAQAAAASABAAAgACAAQAAAATABAAAgABAAQAAAAUABAAAgACAAQAAAAVABAAAgABAAQAAAAWABAAAgACAAQAAAAXABAAAgABAAQAAAAYABAAAgACAAQAAAAZABAAAgABAAQAAAAaABAAAgACAAQAAAAbABAAAgABAAQAAAAcABAAAgACAAQAAAAdABAAAgADAAQAAAAdAA8AAgADAAMAAAAcAA8AAgACAAMAAAAbAA8AAgABAAMAAAAaAA8AAgACAAMAAAAZAA8AAgABAAMAAAAYAA8AAgACAAMAAAAXAA8AAgABAAMAAAAWAA8AAgACAAMAAAAVAA8AAgABAAMAAAAUAA8AAgACAAQAAAATAA8AAgABAAQAAAASAA8AAgACAAQAAAARAA8AAgABAAQAAAAQAA8AAgACAAMAAAAPAA8AAgABAAMAAAAOAA8AAgACAAMAAAANAA8AAgABAAMAAAAMAA8AAgACAAMAAAALAA8AAgABAAMAAAAKAA8AAgACAAMAAAAJAA8AAgABAAMAAAAIAA8AAgACAAMAAAAHAA8AAgABAAMAAAAGAA8AAgACAAMAAAAFAA8AAgABAAMAAAAEAA8AAgACAAMAAAADAA8AAgABAAMAAAACAA8AAgACAAMAAAABAA8AAgABAAMAAAAAAA8AAgAAAAMAAAAdAA4AAgADAAIAAAAdAA0AAgADAAIAAAAdAAwAAgADAAIAAAAdAAsAAgADAAIAAAAdAAoAAgADAAIAAAAdAAkAAgADAAIAAAAdAAgAAgADAAIAAAAdAAcAAgADAAIAAAAdAAYAAgADAAIAAAAdAAUAAgADAAIAAAAdAAQAAgADAAIAAAAdAAMAAgADAAIAAAAdAAIAAgADAAIAAAAdAAEAAgADAAEAAAAdAAAAAgADAAAAAAAcAAAAAgACAAAAAAAbAAAAAgABAAAAAAAaAAAAAgACAAAAAAAZAAAAAgACAAAAAAAYAAAAAgACAAAAAAAXAAAAAgABAAAAAAAWAAAAAgABAAAAAAAVAAAAAgABAAAAAAAUAAAAAgACAAAAAAATAAAAAgABAAAAAAASAAAAAgACAAAAAAARAAAAAgACAAAAAAAQAAAAAgACAAAAAAAPAAAAAgABAAAAAAAOAAAAAgACAAAAAAANAAAAAgABAAAAAAAMAAAAAgABAAAAAAALAAAAAgABAAAAAAAKAAAAAgACAAAAAAAJAAAAAgABAAAAAAAIAAAAAgACAAAAAAAHAAAAAgACAAAAAAAGAAAAAgACAAAAAAAFAAAAAgABAAAAAAAEAAAAAgACAAAAAAADAAAAAgACAAAAAAACAAAAAgACAAAAAAABAAAAAgABAAAAAAAAAAAAAgAAAAAAAAAAAAEAAgAAAAEAAAAAAAIAAgAAAAIAAAAAAAMAAgAAAAIAAAAAAAQAAgAAAAIAAAAAAAUAAgAAAAIAAAAAAAYAAgAAAAIAAAAAAAcAAgAAAAIAAAAAAAgAAgAAAAIAAAAAAAkAAgAAAAIAAAAAAAoAAgAAAAIAAAAAAAsAAgAAAAIAAAAAAAwAAgAAAAIAAAAAAA0AAgAAAAIAAAAAAA4AAgAAAAIAAAARAA4AAgABAAQAAAARAA0AAgABAAMAAAASAA4AAgACAAQAAAATAA4AAgABAAQAAAASAA0AAgACAAMAAAATAA0AAgABAAMAAAAXAAsAAgABAAQAAAAYAAsAAgACAAQAAAAXAAoAAgABAAMAAAAYAAoAAgACAAMAAAAOAAcAAgACAAMAAAAPAAcAAgABAAMAAAAQAAcAAgACAAMAAAAZAAoAAgABAAMAAAAZAAsAAgABAAQAAAAOAAgAAgACAAQAAAAPAAgAAgABAAQAAAAQAAgAAgACAAQAAAAaAAoAAgACAAMAAAANAAcAAgABAAMAAAAUAA0AAgACAAMAAAAUAA4AAgACAAQAAAAaAAsAAgACAAQAAAANAAgAAgABAAQAAAABAAEAAgABAAEAAAAFAAEAAgABAAEAAAAJAAEAAgABAAEAAAALAAEAAgABAAEAAAANAAEAAgABAAEAAAAPAAEAAgABAAEAAAATAAEAAgABAAEAAAAVAAEAAgABAAEAAAAXAAEAAgABAAEAAAAbAAEAAgABAAEAAAAMAAEAAgABAAEAAAAWAAEAAgABAAEAAAA=")
 tile_set = SubResource("TileSet_i7141")
@@ -108,20 +116,20 @@ texture = ExtResource("6_qfnet")
 position = Vector2(13, -8)
 shape = SubResource("RectangleShape2D_i7141")
 
-[node name="WallCollision" type="Area2D" parent="Lasso"]
-position = Vector2(3, -3)
-collision_layer = 4
-
-[node name="LassoArea" type="CollisionShape2D" parent="Lasso/WallCollision"]
-position = Vector2(10, -5)
-shape = SubResource("RectangleShape2D_i7141")
-
 [node name="CritterCollision" type="Area2D" parent="Lasso"]
 collision_layer = 4
 collision_mask = 8
 
-[node name="LassoArea" type="CollisionShape2D" parent="Lasso/CritterCollision"]
+[node name="CritterCollisionArea" type="CollisionShape2D" parent="Lasso/CritterCollision"]
 position = Vector2(13, -8)
+shape = SubResource("RectangleShape2D_i7141")
+
+[node name="WallCollision" type="Area2D" parent="Lasso"]
+position = Vector2(3, -3)
+collision_layer = 4
+
+[node name="WallCollisionArea" type="CollisionShape2D" parent="Lasso/WallCollision"]
+position = Vector2(10, -5)
 shape = SubResource("RectangleShape2D_i7141")
 
 [node name="RopePin" type="Node2D" parent="Lasso"]
@@ -158,5 +166,8 @@ shape = SubResource("RectangleShape2D_4wyf3")
 [node name="LassoPin" type="Node2D" parent="Rancher"]
 position = Vector2(11, -51)
 
-[connection signal="body_entered" from="Lasso/WallCollision" to="Lasso" method="_on_wall_collision_body_entered"]
+[node name="Camera2D" type="Camera2D" parent="Rancher"]
+position = Vector2(0, -24)
+
 [connection signal="body_entered" from="Lasso/CritterCollision" to="Lasso" method="_on_critter_collision_body_entered"]
+[connection signal="body_entered" from="Lasso/WallCollision" to="Lasso" method="_on_wall_collision_body_entered"]
