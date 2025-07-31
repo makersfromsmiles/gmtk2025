@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo7rdr8ov4kht"]
+
+[ext_resource type="Texture2D" uid="uid://dqfbolpqj6c2d" path="res://sprites/ranchermaybe.png" id="1_rwgxs"]
+[ext_resource type="Texture2D" uid="uid://drgngv01g7ms5" path="res://sprites/slime_bouncer_2.png" id="2_4wyf3"]
+
+[node name="World" type="Node2D"]
+
+[node name="Rancher" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(35, 239)
+texture = ExtResource("1_rwgxs")
+
+[node name="SlimeBouncer" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(75, 257)
+texture = ExtResource("2_4wyf3")
