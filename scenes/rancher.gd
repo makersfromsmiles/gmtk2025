@@ -2,14 +2,11 @@ extends CharacterBody2D
 
 @export var speed := 10000.0
 
-@export var jump_strength := 200.0
-@export var gravity := 400.0
+@export var jump_strength := 490.0
+@export var gravity := 980.0
 
 func _physics_process(delta: float) -> void:
-	var _horizontal_direction = (
-		Input.get_action_strength(&"right")
-		- Input.get_action_strength(&"left")
-	)
+	var _horizontal_direction = Input.get_axis(&"left", &"right")
 
 	velocity.x = (_horizontal_direction * speed * delta)
 	velocity.y += (gravity * delta)
