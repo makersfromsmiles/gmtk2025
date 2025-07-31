@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b7v17gq76qtol" path="res://sprites/cosmo_cave.png" id="2_71j4m"]
 [ext_resource type="Script" uid="uid://dtkr15pwhbiau" path="res://scenes/slime.gd" id="3_4mrxx"]
 [ext_resource type="Script" uid="uid://d222difr0a7n" path="res://scenes/rancher.gd" id="3_71j4m"]
-[ext_resource type="Texture2D" uid="uid://ysfu5fhk2cv6" path="res://sprites/rancher.png" id="5_71j4m"]
+[ext_resource type="Texture2D" uid="uid://cjxsbveiy22cn" path="res://sprites/rancher.png" id="6_4mrxx"]
 [ext_resource type="Script" uid="uid://bh0ujhqchm2mt" path="res://scenes/lasso.gd" id="6_i7141"]
 [ext_resource type="Texture2D" uid="uid://do1jrs4xys21h" path="res://sprites/lasso.png" id="6_qfnet"]
 
@@ -68,22 +68,33 @@ script = ExtResource("3_71j4m")
 [node name="RancherSprite" type="Sprite2D" parent="Rancher"]
 texture_filter = 1
 position = Vector2(0, -32)
-texture = ExtResource("5_71j4m")
+texture = ExtResource("6_4mrxx")
 
 [node name="RancherCollision" type="CollisionShape2D" parent="Rancher"]
 position = Vector2(0, -24)
 shape = SubResource("RectangleShape2D_4wyf3")
 
-[node name="Lasso" type="CharacterBody2D" parent="Rancher"]
+[node name="Lasso" type="CharacterBody2D" parent="." node_paths=PackedStringArray("rancher")]
+position = Vector2(240, 192)
 collision_layer = 4
 collision_mask = 8
 script = ExtResource("6_i7141")
+rancher = NodePath("../Rancher")
 
-[node name="LassoSprite" type="Sprite2D" parent="Rancher/Lasso"]
+[node name="LassoSprite" type="Sprite2D" parent="Lasso"]
 texture_filter = 1
 position = Vector2(21, -56)
 texture = ExtResource("6_qfnet")
 
-[node name="LassoCollision" type="CollisionShape2D" parent="Rancher/Lasso"]
+[node name="LassoCollision" type="CollisionShape2D" parent="Lasso"]
 position = Vector2(21, -56)
 shape = SubResource("RectangleShape2D_i7141")
+
+[node name="Area2D" type="Area2D" parent="Lasso"]
+collision_layer = 4
+
+[node name="LassoArea" type="CollisionShape2D" parent="Lasso/Area2D"]
+position = Vector2(21, -56)
+shape = SubResource("RectangleShape2D_i7141")
+
+[connection signal="body_entered" from="Lasso/Area2D" to="Lasso" method="_on_area_2d_body_entered"]
