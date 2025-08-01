@@ -86,10 +86,10 @@ func _physics_process(delta: float) -> void:
 
 func flip_left() -> void:
 	$CowpokeSprite.scale = Vector2(-1.0, 1.0)
-	$LassoPin.position = Vector2(-6.0, -39.0)
+	$LassoPoint.position = Vector2(-6.0, -31.0)
 	is_flipped = true
 
 func flip_right() -> void:
 	$CowpokeSprite.scale = Vector2(1.0, 1.0)
-	$LassoPin.position = Vector2(6.0, -39.0)
+	$LassoPoint.position = Vector2(6.0, -31.0)
 	is_flipped = false
