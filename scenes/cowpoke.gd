@@ -5,9 +5,15 @@ extends CharacterBody2D
 @export var jump_strength := 490.0
 @export var gravity := 980.0
 
+@export var background: ParallaxBackground
+
 var is_flipped := false
 var is_sliding := false
 var _slide_velocity := 0.0
+
+func _ready() -> void:
+	background.get_node(^"CaveParallax").visible = true
+	background.get_node(^"ForestParallax").visible = false
 
 func _physics_process(delta: float) -> void:
 	var _horizontal_direction = Input.get_axis(&"left", &"right")
@@ -33,20 +39,20 @@ func _physics_process(delta: float) -> void:
 			flip_right()
 		move_and_slide()
 		if is_walking:
-			$CowpokeSprite.play("walk")
+			$CowpokeSprite.play(&"walk")
 		elif is_idling:
-			$CowpokeSprite.play("idle")
+			$CowpokeSprite.play(&"idle")
 		elif is_jumping:
-			$CowpokeSprite.play("idle")
+			$CowpokeSprite.play(&"jump")
 		elif is_falling:
-			$CowpokeSprite.play("idle")
+			$CowpokeSprite.play(&"fall")
 
 	elif is_crouching and not is_sliding:
 		if _horizontal_direction < 0.0:
 			flip_left()
 		elif _horizontal_direction > 0.0:
 			flip_right()
-		$CowpokeSprite.play("crouch")
+		$CowpokeSprite.play(&"crouch")
 		if is_slide_starting and not is_flipped:
 			_slide_velocity = 1000.0
 			is_sliding = true
@@ -55,7 +61,7 @@ func _physics_process(delta: float) -> void:
 			is_sliding = true
 
 	elif is_sliding:
-		$CowpokeSprite.play("slide")
+		$CowpokeSprite.play(&"slide")
 		if _slide_velocity <= 0.0 and not is_flipped:
 			_slide_velocity = 0.0
 			is_sliding = false
@@ -70,6 +76,13 @@ func _physics_process(delta: float) -> void:
 			velocity.x = _slide_velocity
 			move_and_slide()
 			_slide_velocity += 4000.0 * delta
+
+	if position.x >= 1200.0:
+		background.get_node(^"CaveParallax").visible = false
+		background.get_node(^"ForestParallax").visible = true
+	elif position.x < 1200.0:
+		background.get_node(^"CaveParallax").visible = true
+		background.get_node(^"ForestParallax").visible = false
 
 func flip_left() -> void:
 	$CowpokeSprite.scale = Vector2(-1.0, 1.0)
