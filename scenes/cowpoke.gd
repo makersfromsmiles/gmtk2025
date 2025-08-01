@@ -5,6 +5,7 @@ extends CharacterBody2D
 @export var jump_strength := 490.0
 @export var gravity := 980.0
 
+var is_flipped := false
 var is_sliding := false
 var _slide_velocity := 0.0
 
@@ -26,6 +27,10 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= jump_strength
 
 	if not is_crouching and not is_sliding:
+		if _horizontal_direction < 0.0:
+			flip_left()
+		elif _horizontal_direction > 0.0:
+			flip_right()
 		move_and_slide()
 		if is_walking:
 			$CowpokeSprite.play("walk")
@@ -37,17 +42,41 @@ func _physics_process(delta: float) -> void:
 			$CowpokeSprite.play("idle")
 
 	elif is_crouching and not is_sliding:
+		if _horizontal_direction < 0.0:
+			flip_left()
+		elif _horizontal_direction > 0.0:
+			flip_right()
 		$CowpokeSprite.play("crouch")
-		if is_slide_starting:
+		if is_slide_starting and not is_flipped:
 			_slide_velocity = 1000.0
+			is_sliding = true
+		elif is_slide_starting and is_flipped:
+			_slide_velocity = -1000.0
 			is_sliding = true
 
 	elif is_sliding:
 		$CowpokeSprite.play("slide")
-		if _slide_velocity <= 0.0:
+		if _slide_velocity <= 0.0 and not is_flipped:
 			_slide_velocity = 0.0
 			is_sliding = false
-		else:
+		elif _slide_velocity >= 0.0 and is_flipped:
+			_slide_velocity = 0.0
+			is_sliding = false
+		elif not is_flipped:
 			velocity.x = _slide_velocity
 			move_and_slide()
 			_slide_velocity -= 4000.0 * delta
+		elif is_flipped:
+			velocity.x = _slide_velocity
+			move_and_slide()
+			_slide_velocity += 4000.0 * delta
+
+func flip_left() -> void:
+	$CowpokeSprite.scale = Vector2(-1.0, 1.0)
+	$LassoPin.position = Vector2(-6.0, -39.0)
+	is_flipped = true
+
+func flip_right() -> void:
+	$CowpokeSprite.scale = Vector2(1.0, 1.0)
+	$LassoPin.position = Vector2(6.0, -39.0)
+	is_flipped = false
