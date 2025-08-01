@@ -14,28 +14,36 @@ func _physics_process(delta: float) -> void:
 	velocity.x = (_horizontal_direction * speed * delta)
 	velocity.y += (gravity * delta)
 
-	var is_falling := velocity.y > 0.0 and not is_on_floor()
 	var is_crouching := is_on_floor() and Input.get_action_strength("down")
-	var is_jumping := Input.is_action_just_pressed(&"jump") and is_on_floor() and not is_crouching
+	var is_jump_starting := Input.is_action_just_pressed(&"jump") and is_on_floor() and not is_crouching
 	var is_slide_starting := Input.is_action_just_pressed(&"jump") and is_crouching
-	var is_moving := is_on_floor() and not is_zero_approx(velocity.x)
-	var is_idling := is_on_floor() and is_zero_approx(velocity.x)
+	var is_jumping := velocity.y < 0.0 and not is_on_floor()
+	var is_falling := velocity.y >= 0.0 and not is_on_floor()
+	var is_walking := is_on_floor() and not is_zero_approx(velocity.x)
+	var is_idling := is_on_floor() and velocity.x < 1.0
 
-	if is_jumping:
+	if is_jump_starting:
 		velocity.y -= jump_strength
 
 	if not is_crouching and not is_sliding:
-		$RancherSprite.animation = &"idle"
 		move_and_slide()
+		if is_walking:
+			$CowpokeSprite.play("walk")
+		elif is_idling:
+			$CowpokeSprite.play("idle")
+		elif is_jumping:
+			$CowpokeSprite.play("idle")
+		elif is_falling:
+			$CowpokeSprite.play("idle")
 
 	elif is_crouching and not is_sliding:
-		$RancherSprite.animation = &"crouch"
+		$CowpokeSprite.play("crouch")
 		if is_slide_starting:
 			_slide_velocity = 1000.0
 			is_sliding = true
 
 	elif is_sliding:
-		$RancherSprite.animation = &"slide"
+		$CowpokeSprite.play("slide")
 		if _slide_velocity <= 0.0:
 			_slide_velocity = 0.0
 			is_sliding = false

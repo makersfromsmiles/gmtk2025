@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmtgngtondvsx"
-path="res://.godot/imported/rancher_crouch.png-fad1b4d2bcdbe2f6aeb9749564890bea.ctex"
+uid="uid://b1s6dny56ylx1"
+path="res://.godot/imported/jam_cowpoke_stand.png-3439decdd13bf36586228f3fd024951c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/rancher/rancher_crouch.png"
-dest_files=["res://.godot/imported/rancher_crouch.png-fad1b4d2bcdbe2f6aeb9749564890bea.ctex"]
+source_file="res://sprites/cowpoke/jam_cowpoke_stand.png"
+dest_files=["res://.godot/imported/jam_cowpoke_stand.png-3439decdd13bf36586228f3fd024951c.ctex"]
 
 [params]
 

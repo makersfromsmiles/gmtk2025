@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byvhk1b5gj52s"
-path="res://.godot/imported/cosmo_cave.png-acfcdafb470c4334330831b981b1d6cc.ctex"
+uid="uid://dt3n7c3uqrbqr"
+path="res://.godot/imported/jam_cowpoke_walk_2.png-863d8dd2423259b35f987d2d2278491c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/world/cosmo_cave.png"
-dest_files=["res://.godot/imported/cosmo_cave.png-acfcdafb470c4334330831b981b1d6cc.ctex"]
+source_file="res://sprites/cowpoke/jam_cowpoke_walk_2.png"
+dest_files=["res://.godot/imported/jam_cowpoke_walk_2.png-863d8dd2423259b35f987d2d2278491c.ctex"]
 
 [params]
 
