@@ -12,8 +12,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_lasso_detector_body_shape_entered(_body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
 	if body.name == &"LassoLoop":
-		body.connected_critter = self
-		body.is_throwing = false
-		body.is_lassoed = true
-		body.visible = false
+		body.get_parent().connected_critter = self
+		body.get_parent().is_throwing = false
+		body.get_parent().is_lassoed = true
+		body.get_parent().visible = false
 		lassoed_label.visible = true
