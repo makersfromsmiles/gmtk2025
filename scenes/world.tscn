@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=4 uid="uid://bo7rdr8ov4kht"]
+[gd_scene load_steps=26 format=4 uid="uid://bo7rdr8ov4kht"]
 
 [ext_resource type="Texture2D" uid="uid://ucb16grtbnyu" path="res://sprites/world/cosmo_cave_bg.png" id="1_q5onr"]
 [ext_resource type="Texture2D" uid="uid://drgngv01g7ms5" path="res://sprites/critter/slime_bouncer_2.png" id="2_4wyf3"]
@@ -161,6 +161,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wyf3"]
 size = Vector2(12, 31)
 
+[sub_resource type="LabelSettings" id="LabelSettings_7t5mc"]
+font_size = 40
+outline_size = 6
+outline_color = Color(0, 0, 0, 1)
+
 [node name="World" type="Node2D"]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
@@ -217,13 +222,14 @@ node_a = NodePath("../LassoLoop")
 node_b = NodePath("../RopeSegment")
 softness = 1.0
 
-[node name="LassoLoop" type="CharacterBody2D" parent="Lasso" node_paths=PackedStringArray("cowpoke", "lasso_point")]
+[node name="LassoLoop" type="CharacterBody2D" parent="Lasso" node_paths=PackedStringArray("cowpoke", "lasso_point", "lasso_timer")]
 position = Vector2(70, 195)
 collision_layer = 4
-collision_mask = 8
+collision_mask = 0
 script = ExtResource("6_i7141")
 cowpoke = NodePath("../../Cowpoke")
 lasso_point = NodePath("../../Cowpoke/LassoPoint")
+lasso_timer = NodePath("LassoTimer")
 
 [node name="LassoSprite" type="Sprite2D" parent="Lasso/LassoLoop"]
 texture_filter = 1
@@ -231,14 +237,6 @@ position = Vector2(13, -8)
 texture = ExtResource("6_qfnet")
 
 [node name="LassoCollision" type="CollisionShape2D" parent="Lasso/LassoLoop"]
-position = Vector2(13, -8)
-shape = SubResource("RectangleShape2D_i7141")
-
-[node name="CritterCollision" type="Area2D" parent="Lasso/LassoLoop"]
-collision_layer = 4
-collision_mask = 8
-
-[node name="CritterCollisionArea" type="CollisionShape2D" parent="Lasso/LassoLoop/CritterCollision"]
 position = Vector2(13, -8)
 shape = SubResource("RectangleShape2D_i7141")
 
@@ -253,9 +251,15 @@ shape = SubResource("RectangleShape2D_i7141")
 [node name="RopePoint" type="Node2D" parent="Lasso/LassoLoop"]
 position = Vector2(3, -3)
 
-[node name="Slime" type="CharacterBody2D" parent="."]
+[node name="LassoTimer" type="Timer" parent="Lasso/LassoLoop"]
+wait_time = 0.5
+one_shot = true
+
+[node name="Slime" type="CharacterBody2D" parent="." node_paths=PackedStringArray("lassoed_label")]
 position = Vector2(400, 208)
+collision_layer = 8
 script = ExtResource("3_4mrxx")
+lassoed_label = NodePath("../Cowpoke/Camera2D/LassoedLabel")
 
 [node name="SlimeSprite" type="Sprite2D" parent="Slime"]
 texture_filter = 1
@@ -263,6 +267,14 @@ texture = ExtResource("2_4wyf3")
 
 [node name="SlimeCollision" type="CollisionShape2D" parent="Slime"]
 position = Vector2(-0.5, 0.5)
+shape = SubResource("RectangleShape2D_qfnet")
+
+[node name="LassoDetector" type="Area2D" parent="Slime"]
+collision_layer = 8
+collision_mask = 4
+
+[node name="SlimeArea" type="CollisionShape2D" parent="Slime/LassoDetector"]
+position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_qfnet")
 
 [node name="Cowpoke" type="CharacterBody2D" parent="." node_paths=PackedStringArray("background")]
@@ -289,5 +301,14 @@ position = Vector2(6, -31)
 [node name="Camera2D" type="Camera2D" parent="Cowpoke"]
 position = Vector2(0, -24)
 
-[connection signal="body_entered" from="Lasso/LassoLoop/CritterCollision" to="Lasso/LassoLoop" method="_on_critter_collision_body_entered"]
+[node name="LassoedLabel" type="Label" parent="Cowpoke/Camera2D"]
+visible = false
+anchors_preset = -1
+grow_horizontal = 2
+grow_vertical = 2
+text = "Lasso'd!"
+label_settings = SubResource("LabelSettings_7t5mc")
+
 [connection signal="body_entered" from="Lasso/LassoLoop/WallCollision" to="Lasso/LassoLoop" method="_on_wall_collision_body_entered"]
+[connection signal="timeout" from="Lasso/LassoLoop/LassoTimer" to="Lasso/LassoLoop" method="_on_lasso_timer_timeout"]
+[connection signal="body_shape_entered" from="Slime/LassoDetector" to="Slime" method="_on_lasso_detector_body_shape_entered"]
