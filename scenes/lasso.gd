@@ -34,6 +34,7 @@ func _physics_process(delta: float) -> void:
 
 	if is_throw_beginning:
 		lasso_timer.start()
+		$LassoSfx.play()
 		visible = true
 		if not is_flipped:
 			$LassoLoop.velocity.x = speed

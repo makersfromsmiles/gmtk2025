@@ -14,6 +14,7 @@ var _slide_velocity := 0.0
 func _ready() -> void:
 	background.get_node(^"CaveParallax").visible = true
 	background.get_node(^"ForestParallax").visible = false
+	$BGM.play()
 
 func _physics_process(delta: float) -> void:
 	var _horizontal_direction = Input.get_axis(&"left", &"right")
@@ -31,6 +32,7 @@ func _physics_process(delta: float) -> void:
 
 	if is_jump_starting:
 		velocity.y -= jump_strength
+		$JumpSfx.play()
 
 	if not is_crouching and not is_sliding:
 		if _horizontal_direction < 0.0:
@@ -56,9 +58,11 @@ func _physics_process(delta: float) -> void:
 		if is_slide_starting and not is_flipped:
 			_slide_velocity = 1000.0
 			is_sliding = true
+			$SlideSfx.play()
 		elif is_slide_starting and is_flipped:
 			_slide_velocity = -1000.0
 			is_sliding = true
+			$SlideSfx.play()
 
 	elif is_sliding:
 		$CowpokeSprite.play(&"slide")
